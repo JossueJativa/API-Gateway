@@ -1,0 +1,349 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Weather Service API",
+        "description": "API para gestionar información meteorológica, ciudades y pronósticos."
+    },
+    "host": "localhost:8082",
+    "basePath": "/api",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/weather": {
+            "get": {
+                "tags": [
+                    "Weather"
+                ],
+                "summary": "Obtener lista de condiciones climáticas.",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "Número máximo de resultados."
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "Número de resultados a omitir."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de condiciones climáticas obtenida con éxito."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Weather"
+                ],
+                "summary": "Crear una nueva condición climática.",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Weather"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Condición climática creada con éxito."
+                    },
+                    "400": {
+                        "description": "Datos de entrada inválidos."
+                    }
+                }
+            }
+        },
+        "/weather/{city}": {
+            "get": {
+                "tags": [
+                    "Weather"
+                ],
+                "summary": "Obtener condiciones climáticas por ciudad.",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "description": "Nombre de la ciudad."
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "Número máximo de resultados."
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "Número de resultados a omitir."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Condiciones climáticas de la ciudad obtenidas con éxito."
+                    },
+                    "404": {
+                        "description": "Ciudad no encontrada."
+                    }
+                }
+            }
+        },
+        "/weather/{weather_id}": {
+            "put": {
+                "tags": [
+                    "Weather"
+                ],
+                "summary": "Actualizar una condición climática por ID.",
+                "parameters": [
+                    {
+                        "name": "weather_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "description": "ID de la condición climática."
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Weather"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Condición climática actualizada con éxito."
+                    },
+                    "400": {
+                        "description": "Datos de entrada inválidos."
+                    },
+                    "404": {
+                        "description": "Condición climática no encontrada."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Weather"
+                ],
+                "summary": "Eliminar una condición climática por ID.",
+                "parameters": [
+                    {
+                        "name": "weather_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "description": "ID de la condición climática."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Condición climática eliminada con éxito."
+                    },
+                    "404": {
+                        "description": "Condición climática no encontrada."
+                    }
+                }
+            }
+        },
+        "/weather/forecast": {
+            "get": {
+                "tags": [
+                    "Forecast"
+                ],
+                "summary": "Obtener pronóstico general para todas las ciudades.",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "Número máximo de resultados."
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "Número de resultados a omitir."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pronóstico general obtenido con éxito."
+                    }
+                }
+            }
+        },
+        "/weather/forecast/{city_name}": {
+            "get": {
+                "tags": [
+                    "Forecast"
+                ],
+                "summary": "Obtener pronóstico para una ciudad específica.",
+                "parameters": [
+                    {
+                        "name": "city_name",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "description": "Nombre de la ciudad."
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "Número máximo de resultados."
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "Número de resultados a omitir."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pronóstico de la ciudad obtenido con éxito."
+                    },
+                    "404": {
+                        "description": "Ciudad no encontrada."
+                    }
+                }
+            }
+        },
+        "/cities": {
+            "get": {
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "Obtener una lista de ciudades.",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "Número máximo de resultados."
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer",
+                        "description": "Número de resultados a omitir."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de ciudades obtenida con éxito."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "Crear una nueva ciudad.",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/City"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Ciudad creada con éxito."
+                    },
+                    "400": {
+                        "description": "Datos de entrada inválidos."
+                    }
+                }
+            }
+        },
+        "/cities/{city_id}": {
+            "delete": {
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "Eliminar una ciudad por ID.",
+                "parameters": [
+                    {
+                        "name": "city_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "description": "ID de la ciudad."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ciudad eliminada con éxito."
+                    },
+                    "404": {
+                        "description": "Ciudad no encontrada."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Weather": {
+            "type": "object",
+            "properties": {
+                "city_id": {
+                    "type": "integer",
+                    "description": "ID de la ciudad asociada."
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Fecha del registro de clima."
+                },
+                "temperature": {
+                    "type": "integer",
+                    "description": "Temperatura en grados Celsius."
+                },
+                "humidity": {
+                    "type": "integer",
+                    "description": "Porcentaje de humedad."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Descripción del clima."
+                }
+            }
+        },
+        "City": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Nombre de la ciudad."
+                }
+            }
+        }
+    }
+}
