@@ -52,8 +52,8 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 class Server {
     constructor() {
-        this.user_path = '/api/users';
-        this.auth_path = '/api/auth';
+        this.user_path = '/users';
+        this.auth_path = '/auth';
 
         this.app = express();
 

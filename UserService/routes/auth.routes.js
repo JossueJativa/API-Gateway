@@ -14,7 +14,7 @@ const router = Router();
 
 /**
  * @swagger
- * /api/auth/login:
+ * /auth/login:
  *   post:
  *     summary: Inicia sesión en la aplicación
  *     tags: [Auth]
@@ -60,7 +60,7 @@ router.post(
 
 /**
  * @swagger
- * /api/auth/logout:
+ * /auth/logout:
  *   post:
  *     summary: Cierra sesión en la aplicación
  *     tags: [Auth]

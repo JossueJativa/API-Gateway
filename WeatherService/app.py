@@ -16,8 +16,8 @@ app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', 'a_default_secret_
 
 db.init_app(app)
 
-app.register_blueprint(city_blueprint, url_prefix='/api')
-app.register_blueprint(weather_data_blueprint, url_prefix='/api')
+app.register_blueprint(city_blueprint, url_prefix='/')
+app.register_blueprint(weather_data_blueprint, url_prefix='/')
 
 # Swagger configuration
 SWAGGER_URL = '/swagger'

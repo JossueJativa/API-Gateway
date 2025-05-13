@@ -6,7 +6,7 @@
         "description": "API para gestionar información meteorológica, ciudades y pronósticos."
     },
     "host": "localhost:8082",
-    "basePath": "/api",
+    "basePath": "/",
     "schemes": [
         "http"
     ],
